@@ -22,25 +22,33 @@ package com.BinarySearch.InterviewBit;
 public class Pow {
     public int pow(int x, int n, int d) {
 
-        long a = x;
-        long res = 1L;
+        if(n == 0 && d>1){
+            return 1;
+        }else if(n == 0 && d==1){
+            return 0;
+        }
 
-        while (n > 0) {
+        long result = 1;
+        long square = x;
 
-            if (n % 2 == 1) {
-                res *= a;
-                res %= d;
+        while(n > 0){
+            if(n%2 == 1){
+                result = (result*square)%d;
+
             }
 
-            a *= a;
-            a %= d;
-            n = n >> 1;
+            square = (square*square) % d;
+
+            n/=2;
+
 
         }
 
-        res = (res + d) % d;
+        result = (result + d) % d;
 
-        return (int) res;
+        return (int )result;
+
+
 
     }
 
@@ -50,6 +58,7 @@ public class Pow {
     public static void main(String[] args){
         Pow p = new Pow();
         int result = p.pow(79161127,99046373,57263970);
+        //int result = p.pow(2,3,3);
         System.out.println(result);
 
 
