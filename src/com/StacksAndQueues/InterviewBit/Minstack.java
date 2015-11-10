@@ -26,7 +26,7 @@ import java.util.Arrays;
 
  Q: What should top() do on empty stack?
  A: In this case, return -1
- NOTE : If you are using your own declared global variables, make sure to clear them out in the 
+ NOTE : If you are using your own declared global variables, make sure to clear them out in the
  */
 public class Minstack {
 
