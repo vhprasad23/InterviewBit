@@ -25,23 +25,23 @@ public class Anagrams {
     public ArrayList<ArrayList<Integer>> anagrams(final List<String> a) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
-        //Initialize a boolean array that indicates if a word in the list has already been visited and it was found to be an anagram.
+        //Initialize a boolean array that indicates if a word in the list has already been visited and it was found to be in an anagram group.
         boolean[] flags = new boolean[a.size()];
 
         for(int i=0;i<a.size();i++){
             String string1 = a.get(i);
             ArrayList<Integer> temp = new ArrayList<>();
 
-            //Check if the current element is an anagram and it hasn't been visited before
+            //Check if the current element hasn't been visited before
 
-            if(isAnagram(string1,string1) && flags[i] != true) {
+            if(flags[i] != true) {
                 temp.add(i + 1);
                 flags[i]=true;
             }else{
                 continue;
             }
 
-            //Given that the current word is an anagram, now find the groups of anagrams in the list
+            //Find the groups of anagrams in the list
             for(int j=0;j<a.size();j++){
                 if(j!=i && flags[j] != true){
                     String string2 = a.get(j);
