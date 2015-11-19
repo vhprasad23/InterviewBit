@@ -2,6 +2,7 @@ package com.Trees.InterviewBit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * Created by priyavivek on 11/15/15.
@@ -15,34 +16,53 @@ public class Treetraversal {
     public ArrayList<Integer> arrayPre = new ArrayList<>();
     public ArrayList<Integer> arrayPost = new ArrayList<>();
 
-    public void inOrder(TreeNode a){
+    public void inOrderRecursive(TreeNode a){
 
         if(a == null){
             return;
         }
-        inOrder(a.left);
+        inOrderRecursive(a.left);
         arrayIn.add(a.val);
-        inOrder(a.right);
+        inOrderRecursive(a.right);
 
     }
 
+    public ArrayList<Integer> inOrderIterative(TreeNode a){
+        ArrayList<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        while(!stack.isEmpty() || a!=null){
+            if(a !=null) {
+                stack.push(a);
+                a = a.left;
 
-    public void preOrder(TreeNode a){
+            }else {
+                TreeNode temp = stack.pop();
+                result.add(temp.val);
+                a = temp.right;
+
+            }
+        }
+
+        return result;
+    }
+
+
+    public void preOrderRecursive(TreeNode a){
         if(a == null){
             return;
         }
         arrayPre.add(a.val);
-        preOrder(a.left);
-        preOrder(a.right);
+        preOrderRecursive(a.left);
+        preOrderRecursive(a.right);
 
     }
 
-    public void postOrder(TreeNode a){
+    public void postOrderRecursive(TreeNode a){
         if(a == null){
             return;
         }
-        postOrder(a.left);
-        postOrder(a.right);
+        postOrderRecursive(a.left);
+        postOrderRecursive(a.right);
         arrayPost.add(a.val);
 
     }
@@ -53,9 +73,9 @@ public class Treetraversal {
         TreeNode root = CreateBST.insertElements(s);
 
         Treetraversal t = new Treetraversal();
-        t.inOrder(root);
-        t.preOrder(root);
-        t.postOrder(root);
+        t.inOrderRecursive(root);
+        t.preOrderRecursive(root);
+        t.postOrderRecursive(root);
 
         System.out.println("Printing in-order");
         for(int i=0;i<t.arrayIn.size();i++){
